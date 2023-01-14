@@ -1,4 +1,14 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["./**/*.ts", "./**/*.js", "./.*.js"]
+  "include": ["./**/*.ts", "./**/*.tsx", "./**/*.js", "./.*.js"],
+  "import/extensions": [
+    "error",
+    "ignorePackages",
+    {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }
+  ]
 }
