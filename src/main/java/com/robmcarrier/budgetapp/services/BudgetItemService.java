@@ -1,6 +1,6 @@
 package com.robmcarrier.budgetapp.services;
 
-import com.robmcarrier.budgetapp.Models.BudgetItem;
+import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.repositories.BudgetItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

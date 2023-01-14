@@ -1,6 +1,6 @@
 package com.robmcarrier.budgetapp.controllers;
 
-import com.robmcarrier.budgetapp.Models.BudgetItem;
+import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

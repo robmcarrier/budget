@@ -1,4 +1,4 @@
-package com.robmcarrier.budgetapp.Models;
+package com.robmcarrier.budgetapp.models;
 
 import lombok.Getter;
 import lombok.Setter;
