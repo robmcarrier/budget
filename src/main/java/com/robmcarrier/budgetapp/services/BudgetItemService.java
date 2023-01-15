@@ -21,7 +21,7 @@ public class BudgetItemService {
         return budgetItemRepository.save(budgetItem);
     }
 
-    public Mono<Void> deleteBudgetItem(String name) {
-        return budgetItemRepository.deleteByName(name);
+    public Mono<Void> deleteBudgetItem(String id) {
+        return budgetItemRepository.deleteById(id);
     }
 }

@@ -27,7 +27,7 @@ public class MainController {
     }
 
     @MutationMapping
-    public Mono<Void> deleteBudgetItem(@Argument String name) {
-        return budgetItemService.deleteBudgetItem(name);
+    public Mono<Void> deleteBudgetItem(@Argument String id) {
+        return budgetItemService.deleteBudgetItem(id);
     }
 }

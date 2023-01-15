@@ -19,5 +19,5 @@ type Query {
 
 type Mutation {
     createBudgetItem(budgetItem: BudgetItemInput!) : BudgetItem!
-    deleteBudgetItem(name: String!): BudgetItem
+    deleteBudgetItem(id: ID!): BudgetItem
 }

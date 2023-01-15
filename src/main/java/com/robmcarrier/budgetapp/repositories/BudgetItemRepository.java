@@ -5,5 +5,4 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
 public interface BudgetItemRepository extends ReactiveMongoRepository<BudgetItem, String> {
-    Mono<Void> deleteByName(String name);
 }
