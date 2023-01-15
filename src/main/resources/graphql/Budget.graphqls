@@ -1,0 +1,23 @@
+type BudgetItem {
+    id: ID!
+    name: String!
+    amount: Int
+    dayOfMonth: Int
+    split: Boolean
+}
+
+input BudgetItemInput {
+    name: String
+    amount: Int
+    dayOfMonth: Int
+    split: Boolean
+}
+
+type Query {
+    budgetItems: [BudgetItem]!
+}
+
+type Mutation {
+    createBudgetItem(budgetItem: BudgetItemInput!) : BudgetItem!
+    deleteBudgetItem(name: String!): BudgetItem
+}

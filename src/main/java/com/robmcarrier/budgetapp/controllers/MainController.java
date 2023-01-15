@@ -3,28 +3,31 @@ package com.robmcarrier.budgetapp.controllers;
 import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class MainController {
 
     private final BudgetItemService budgetItemService;
 
-    @GetMapping(path = "/items")
-    public Flux<BudgetItem> getBudgetItems() {
+    @QueryMapping
+    public Flux<BudgetItem> budgetItems() {
         return budgetItemService.getBudgetItems();
     }
 
-    @PostMapping(path = "/items")
-    public Mono<BudgetItem> createBudgetItem(BudgetItem budgetItem) {
+    @MutationMapping
+    public Mono<BudgetItem> createBudgetItem(@Argument BudgetItem budgetItem) {
         return budgetItemService.createBudgetItem(budgetItem);
     }
 
-    @DeleteMapping(path = "/item/{name}")
-    public Mono<Void> deleteBudgetItem(@PathVariable("name") String name) {
+    @MutationMapping
+    public Mono<Void> deleteBudgetItem(@Argument String name) {
         return budgetItemService.deleteBudgetItem(name);
     }
 }
