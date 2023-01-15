@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Calendar from './components/Calendar';
+import CalendarWrapper from './components/CalendarWrapper';
+import BudgetItemForm from './components/BudgetItemForm';
 
 function App() {
   return (
     <div className="App">
-      <Calendar />
+      <CalendarWrapper />
+        <BudgetItemForm />
     </div>
   );
 }
