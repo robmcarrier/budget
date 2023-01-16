@@ -7,7 +7,7 @@ type BudgetItem {
 }
 
 input BudgetItemInput {
-    name: String
+    name: String!
     amount: Int
     dayOfMonth: Int
     split: Boolean
