@@ -17,7 +17,7 @@ on:
 
 jobs:
   build:
-
+    name: Java CI
     runs-on: ubuntu-latest
 
     steps:
