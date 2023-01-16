@@ -1,0 +1,13 @@
+name: Java CI
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.java'
+      - 'pom.xml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "Java CI build not required"'
