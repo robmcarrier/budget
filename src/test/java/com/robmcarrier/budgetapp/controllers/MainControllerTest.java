@@ -17,6 +17,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @GraphQlTest(MainController.class)
 class MainControllerTest {
@@ -107,6 +108,21 @@ class MainControllerTest {
 
     @Test
     void deleteBudgetItem() {
+        String id = "test";
+        given(budgetItemService.deleteBudgetItem(id)).willReturn(Mono.empty());
+
+        String document = "mutation($id: ID!) {" +
+                "  deleteBudgetItem(id: $id) {" +
+                "       id" +
+                "       name" +
+                "  }" +
+                "}";
+
+        graphQlTester.document(document)
+                .variable("id", "test")
+                .executeAndVerify();
+
+        verify(budgetItemService).deleteBudgetItem(id);
     }
 
     private BudgetItem createTestBudgetItem() {
