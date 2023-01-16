@@ -8,13 +8,7 @@
 
 name: Java CI
 
-on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+on: push
 
 
 jobs:
