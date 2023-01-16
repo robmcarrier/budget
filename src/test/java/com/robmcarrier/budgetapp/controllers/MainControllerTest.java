@@ -48,6 +48,7 @@ class MainControllerTest {
                 "   name" +
                 "   amount" +
                 "   dayOfMonth" +
+                "   split" +
                 "  }" +
                 "}";
 
@@ -61,10 +62,10 @@ class MainControllerTest {
 
         assertThat(responseItems.size()).isEqualTo(4);
 
-        assertThat(budgetItem1.equals(responseItems.get(0))).isTrue();
-        assertThat(budgetItem2.equals(responseItems.get(1))).isTrue();
-        assertThat(budgetItem3.equals(responseItems.get(2))).isTrue();
-        assertThat(budgetItem4.equals(responseItems.get(3))).isTrue();
+        assertThat(responseItems.get(0)).isEqualTo(budgetItem1);
+        assertThat(responseItems.get(1)).isEqualTo(budgetItem2);
+        assertThat(responseItems.get(2)).isEqualTo(budgetItem3);
+        assertThat(responseItems.get(3)).isEqualTo(budgetItem4);
     }
 
     @Test
