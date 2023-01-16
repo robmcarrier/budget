@@ -9,7 +9,7 @@
 name: Java CI
 
 on:
-  pull_requests:
+  pull_request:
     paths:
       - '**.java'
       - 'pom.xml'
