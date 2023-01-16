@@ -88,6 +88,8 @@ class MainControllerTest {
                 "   }) {" +
                 "   id" +
                 "   name" +
+                "   amount" +
+                "   dayOfMonth" +
                 "  }" +
                 "}";
 
@@ -103,8 +105,8 @@ class MainControllerTest {
 
         assertThat(responseItem.getName()).isEqualTo(budgetItem.getName());
         assertThat(responseItem.getId()).isEqualTo(budgetItem.getId());
-        assertThat(responseItem.getAmount()).isEqualTo(0);
-        assertThat(responseItem.getDayOfMonth()).isEqualTo(0);
+        assertThat(responseItem.getAmount()).isEqualTo(budgetItem.getAmount());
+        assertThat(responseItem.getDayOfMonth()).isEqualTo(budgetItem.getDayOfMonth());
     }
 
     @Test
