@@ -2,7 +2,6 @@ package com.robmcarrier.budgetapp.controllers;
 
 import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
-import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
@@ -13,8 +12,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+import static com.robmcarrier.budgetapp.helper.BudgetItemHelper.createTestBudgetItem;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -49,6 +48,7 @@ class MainControllerTest {
                 "   name" +
                 "   amount" +
                 "   dayOfMonth" +
+                "   split" +
                 "  }" +
                 "}";
 
@@ -62,10 +62,10 @@ class MainControllerTest {
 
         assertThat(responseItems.size()).isEqualTo(4);
 
-        assertThat(budgetItem1.equals(responseItems.get(0))).isTrue();
-        assertThat(budgetItem2.equals(responseItems.get(1))).isTrue();
-        assertThat(budgetItem3.equals(responseItems.get(2))).isTrue();
-        assertThat(budgetItem4.equals(responseItems.get(3))).isTrue();
+        assertThat(responseItems.get(0)).isEqualTo(budgetItem1);
+        assertThat(responseItems.get(1)).isEqualTo(budgetItem2);
+        assertThat(responseItems.get(2)).isEqualTo(budgetItem3);
+        assertThat(responseItems.get(3)).isEqualTo(budgetItem4);
     }
 
     @Test
@@ -126,16 +126,5 @@ class MainControllerTest {
                 .executeAndVerify();
 
         verify(budgetItemService).deleteBudgetItem(id);
-    }
-
-    private BudgetItem createTestBudgetItem() {
-        Faker faker = new Faker();
-        BudgetItem budgetItem = new BudgetItem();
-        budgetItem.setId(faker.internet().uuid());
-        budgetItem.setName(faker.appliance().brand());
-        budgetItem.setAmount(new Random().nextInt(1000 - 10 + 1) + 10);
-        budgetItem.setDayOfMonth(new Random().nextInt(31 - 1 + 1) + 1);
-        budgetItem.setSplit(false);
-        return budgetItem;
     }
 }
