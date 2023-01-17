@@ -7,5 +7,8 @@ module.exports = {
     parserOptions: {
         project: './tsconfig.eslint.json',
     },
-    rules: {"react/jsx-filename-extension": [0]}
+    rules: {
+        "react/jsx-filename-extension": [0],
+        "import/no-extraneous-dependencies": [0]
+    }
 };

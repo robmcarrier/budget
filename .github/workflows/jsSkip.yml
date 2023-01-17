@@ -3,7 +3,11 @@ name: React CI
 on:
   pull_request:
     paths-ignore:
-      - 'react-js/**'
+      - 'react-ts/**.ts'
+      - 'react-ts/**.tsx'
+      - 'react-ts/**.json'
+      - 'react-ts/**.js'
+      - 'react-ts/**.jsx'
 
 jobs:
   build:
