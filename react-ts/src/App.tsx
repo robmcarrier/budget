@@ -5,10 +5,12 @@ import BudgetItemForm from './components/BudgetItemForm';
 
 function App() {
   return (
-    <div className="App">
-      <CalendarWrapper />
-        <BudgetItemForm />
-    </div>
+
+              <div className="App">
+                  <CalendarWrapper />
+                  <BudgetItemForm />
+              </div>
+
   );
 }
 
