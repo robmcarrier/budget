@@ -2,13 +2,14 @@ import { Button, Form } from 'react-bootstrap';
 import BudgetItemsApi from '../api/budgetItemsApi';
 import { useState } from 'react';
 import BudgetItem from '../types/BudgetItem';
+import { AxiosResponse } from 'axios';
 
 const BudgetItemForm = () => {
   const [budgetItems, setBudgetItems]: [BudgetItem[], (budgetItems: BudgetItem[]) => void] = useState<BudgetItem[]>([]);
   const budgetItemsApi = new BudgetItemsApi();
 
   const doGet = () => {
-    budgetItemsApi.getAll().then((resp) => {
+    budgetItemsApi.getAll().then((resp: AxiosResponse<BudgetItem[]>) => {
       setBudgetItems(resp.data);
     });
   };
@@ -28,7 +29,7 @@ const BudgetItemForm = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
-                <Button onClick={() => doGet()}>Click ME</Button>
+                <Button onClick={() => doGet()} >Click ME</Button>
                 {budgetItems.length > 0 ? <p>found some</p> : <p>found none</p>}
             </Form>
         </>
