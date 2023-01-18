@@ -1,8 +1,17 @@
 import http from './http-common';
 import BudgetItem from '../types/BudgetItem';
+
 class BudgetItemsApi {
   getAll = () => {
-    return http.get<BudgetItem[]>('/graphql');
+    return http.post<BudgetItem[]>('/graphql', {
+      query: `
+        query {
+          budgetItems{
+            id
+            name
+          }
+        }`,
+    });
   };
 }
 

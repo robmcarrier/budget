@@ -1,0 +1,3 @@
+spring.data.mongodb.database=budget
+spring.graphql.cors.allowed-methods=*
+spring.graphql.cors.allowed-origins=*
