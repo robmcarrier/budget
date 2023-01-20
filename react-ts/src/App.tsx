@@ -1,7 +1,8 @@
 import React from 'react';
-import './App.css';
 import CalendarWrapper from './components/CalendarWrapper';
 import BudgetItemForm from './components/BudgetItemForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   return (

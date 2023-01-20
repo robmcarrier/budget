@@ -1,7 +1,9 @@
+import { Key } from 'react';
+
 export default interface BudgetItem {
-  id: String,
+  id?: Key,
   name: String,
-  amount: number,
-  dayOfMonth: number,
-  split: boolean,
+  amount: Number | undefined,
+  dayOfMonth: Number | undefined,
+  split?: boolean,
 }
