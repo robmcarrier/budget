@@ -1,7 +1,9 @@
 package com.robmcarrier.budgetapp.controllers;
 
 import com.robmcarrier.budgetapp.models.BudgetItem;
+import com.robmcarrier.budgetapp.models.Debt;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
+import com.robmcarrier.budgetapp.services.DebtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -15,10 +17,16 @@ import reactor.core.publisher.Mono;
 public class MainController {
 
     private final BudgetItemService budgetItemService;
+    private final DebtService debtService;
 
     @QueryMapping
     public Flux<BudgetItem> budgetItems() {
         return budgetItemService.getBudgetItems();
+    }
+
+    @QueryMapping
+    public Flux<Debt> getAllDebt() {
+        return debtService.getAllDebt();
     }
 
     @MutationMapping

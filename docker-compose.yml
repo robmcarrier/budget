@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  java:
+    build: .
+    ports:
+      - "8080:8080"
+  react:
+    build: ./react-ts/
+    ports:
+      - "80:80"
