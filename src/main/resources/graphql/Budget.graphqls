@@ -6,6 +6,13 @@ type BudgetItem {
     split: Boolean
 }
 
+type Debt {
+    id: ID!
+    name: String!
+    amount: Int
+    interestRate: String
+}
+
 input BudgetItemInput {
     name: String!
     amount: Int
@@ -15,6 +22,7 @@ input BudgetItemInput {
 
 type Query {
     budgetItems: [BudgetItem]!
+    getAllDebt: [Debt]!
 }
 
 type Mutation {

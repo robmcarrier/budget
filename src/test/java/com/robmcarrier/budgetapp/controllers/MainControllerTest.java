@@ -2,6 +2,7 @@ package com.robmcarrier.budgetapp.controllers;
 
 import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
+import com.robmcarrier.budgetapp.services.DebtService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
@@ -26,6 +27,9 @@ class MainControllerTest {
 
     @MockBean
     private BudgetItemService budgetItemService;
+
+    @MockBean
+    private DebtService debtService;
 
     @Test
     void budgetItems() {
