@@ -3,7 +3,7 @@ import BudgetItemForm from './BudgetItemForm';
 import userEvent from '@testing-library/user-event';
 
 describe('BudgetItemForm component', () => {
-  it('should render the Submit button component correctly', async () => {
+  it('should render the Submit button component when clicked', async () => {
     render(<BudgetItemForm />);
     const element = screen.getByRole('button');
     expect(element).toBeInTheDocument();
@@ -12,5 +12,13 @@ describe('BudgetItemForm component', () => {
       name: /Submit/,
     } );
     expect(submitButton).toBeInTheDocument();
+  });
+
+  it('should not render Submit button when not clicked', () => {
+    render(<BudgetItemForm/>);
+    const submitButton = screen.queryByRole('button', {
+      name: /Submit/,
+    } );
+    expect(submitButton).not.toBeInTheDocument();
   });
 });
