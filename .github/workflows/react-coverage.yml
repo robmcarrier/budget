@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm coverage
-      - run: npm make-badge
+      - run: npm run coverage
+      - run: npm run make-badge
       - name: Commit the badge (if it changed)
         run: |
           if [[ `git status --porcelain` ]]; then
