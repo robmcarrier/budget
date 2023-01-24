@@ -10,4 +10,9 @@ class BudgetAppApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void main() {
+        BudgetAppApplication.main(new String[] {});
+    }
+
 }

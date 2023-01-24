@@ -1,6 +1,7 @@
 package com.robmcarrier.budgetapp.controllers;
 
 import com.robmcarrier.budgetapp.models.BudgetItem;
+import com.robmcarrier.budgetapp.models.Debt;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
 import com.robmcarrier.budgetapp.services.DebtService;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.robmcarrier.budgetapp.helper.BudgetItemHelper.createTestBudgetItem;
+import static com.robmcarrier.budgetapp.helper.DebtHelper.createTestDebt;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -134,6 +136,40 @@ class MainControllerTest {
 
     @Test
     void getAllDebt() {
-        
+        List<Debt> debtList = new ArrayList<>(4);
+
+        Debt debt1 = createTestDebt();
+        Debt debt2 = createTestDebt();
+        Debt debt3 = createTestDebt();
+        Debt debt4 = createTestDebt();
+
+        debtList.add(debt1);
+        debtList.add(debt2);
+        debtList.add(debt3);
+        debtList.add(debt4);
+
+        Flux<Debt> debtFlux = Flux.fromIterable(debtList);
+        String document = "query {" +
+                " getAllDebt {" +
+                "  id" +
+                "  name" +
+                "  amount" +
+                "  interestRate" +
+                " }" +
+                "}";
+        given(debtService.getAllDebt()).willReturn(debtFlux);
+
+        List<Debt> responseItems = graphQlTester.document(document)
+                .execute()
+                .path("getAllDebt")
+                .entityList(Debt.class)
+                .get();
+        assertThat(responseItems.size()).isEqualTo(4);
+
+        assertThat(responseItems.get(0)).isEqualTo(debt1);
+        assertThat(responseItems.get(1)).isEqualTo(debt2);
+        assertThat(responseItems.get(2)).isEqualTo(debt3);
+        assertThat(responseItems.get(3)).isEqualTo(debt4);
+
     }
 }
