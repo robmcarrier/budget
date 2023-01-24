@@ -24,6 +24,7 @@ const BudgetItemForm = () => {
     if (!e.currentTarget.checkValidity()) {
       e.preventDefault();
       e.stopPropagation();
+      return;
     }
 
     setValidated(true);
@@ -50,19 +51,17 @@ const BudgetItemForm = () => {
           <>
           <h3>Create Budget Item</h3>
         <Form noValidate validated={validated} onSubmit={(event) => submit(event)}>
-          <Form.Group className="mb-3" controlId="validationCustom01">
+          <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" placeholder="Enter Bill name" value={name}
                           onChange={(e) => setName(e.target.value)}/>
-
-
           </Form.Group>
           <Form.Group className="mb-3" controlId="amount">
             <Form.Label>Amount</Form.Label>
             <Form.Control type="number" placeholder="Enter Amount" value={amount}
                           onChange={(e) => setAmount(parseInt(e.target.value))}/>
           </Form.Group>
-          <Form.Group className={'mb-3'} controlId={'amount'}>
+          <Form.Group className={'mb-3'} controlId={'dayOfMonth'}>
             <Form.Label>Day of the month</Form.Label>
             <Form.Control type={'number'} placeholder={'Enter day of the month'} value={dayOfMonth}
                           onChange={(e) => setDayOfMonth(parseInt(e.target.value))}/>
@@ -73,7 +72,7 @@ const BudgetItemForm = () => {
           <Button onClick={() => doGet()}>Click ME</Button>
           {budgetItems.length > 0 ? (
             budgetItems.map((budgetItem) => {
-              return <p key={budgetItem.id}>{budgetItem.name}</p>;
+              return <p key={budgetItem.id} data-testid={budgetItem.id}>{budgetItem.name}</p>;
             })
           ) : <p>None found</p>}
         </Form>

@@ -131,4 +131,9 @@ class MainControllerTest {
 
         verify(budgetItemService).deleteBudgetItem(id);
     }
+
+    @Test
+    void getAllDebt() {
+        
+    }
 }

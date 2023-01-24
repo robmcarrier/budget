@@ -2,7 +2,7 @@ import http from './http-common';
 import BudgetItem from '../types/BudgetItem';
 import GetBudgetItemsRequest from '../types/GetBudgetItemsRequest';
 
-class BudgetItemsApi {
+export default class BudgetItemsApi {
   getAll = () => {
     return http.post<GetBudgetItemsRequest>('/graphql', {
       query: `
@@ -16,7 +16,7 @@ class BudgetItemsApi {
   };
 
   createBudgetItem = (budgetItem: BudgetItem) => {
-    return http.post<BudgetItem>('/graphql', {
+    return http.post<GetBudgetItemsRequest>('/graphql', {
       query: `
         mutation($name: String! $amount: Int $dayOfMonth: Int $split: Boolean) {
           createBudgetItem(budgetItem: {
@@ -30,5 +30,3 @@ class BudgetItemsApi {
     });
   };
 }
-
-export default BudgetItemsApi;
