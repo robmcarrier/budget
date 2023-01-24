@@ -1,5 +1,6 @@
 package com.robmcarrier.budgetapp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -7,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Setter
 @Getter
+@EqualsAndHashCode
 @Document
 public class Debt {
     @Id
