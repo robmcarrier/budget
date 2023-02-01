@@ -2,6 +2,7 @@ package com.robmcarrier.budgetapp.services;
 
 import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.repositories.BudgetItemRepository;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,11 +11,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.robmcarrier.budgetapp.helper.BudgetItemHelper.createTestBudgetItem;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -31,21 +30,13 @@ class BudgetItemServiceTest {
 
     @Test
     void getBudgetItems() {
-        List<BudgetItem> budgetItems = new ArrayList<>();
-        BudgetItem budgetItem1 = createTestBudgetItem();
-        BudgetItem budgetItem2 = createTestBudgetItem();
-        BudgetItem budgetItem3 = createTestBudgetItem();
-        BudgetItem budgetItem4 = createTestBudgetItem();
-        budgetItems.add(budgetItem1);
-        budgetItems.add(budgetItem2);
-        budgetItems.add(budgetItem3);
-        budgetItems.add(budgetItem4);
+        List<BudgetItem> budgetItems = Instancio.ofList(BudgetItem.class).size(4).create();
 
         given(budgetItemRepository.findAll()).willReturn(Flux.fromIterable(budgetItems));
 
         Iterator<BudgetItem> actual = budgetItemService.getBudgetItems().toIterable().iterator();
         int idx = 0;
-        while(actual.hasNext()) {
+        while (actual.hasNext()) {
             assertThat(actual.next()).isEqualTo(budgetItems.get(idx));
             idx++;
         }
@@ -55,7 +46,7 @@ class BudgetItemServiceTest {
 
     @Test
     void createBudgetItem() {
-        BudgetItem newBudgetItem = createTestBudgetItem();
+        BudgetItem newBudgetItem = Instancio.create(BudgetItem.class);
         given(budgetItemRepository.save(newBudgetItem)).willReturn(Mono.just(newBudgetItem));
 
         Mono<BudgetItem> actual = budgetItemService.createBudgetItem(newBudgetItem);

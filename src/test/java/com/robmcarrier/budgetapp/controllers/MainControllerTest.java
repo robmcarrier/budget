@@ -4,6 +4,7 @@ import com.robmcarrier.budgetapp.models.BudgetItem;
 import com.robmcarrier.budgetapp.models.Debt;
 import com.robmcarrier.budgetapp.services.BudgetItemService;
 import com.robmcarrier.budgetapp.services.DebtService;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
@@ -12,11 +13,8 @@ import org.springframework.graphql.test.tester.GraphQlTester;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.robmcarrier.budgetapp.helper.BudgetItemHelper.createTestBudgetItem;
-import static com.robmcarrier.budgetapp.helper.DebtHelper.createTestDebt;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -35,17 +33,7 @@ class MainControllerTest {
 
     @Test
     void budgetItems() {
-        List<BudgetItem> budgetItems = new ArrayList<>();
-
-        BudgetItem budgetItem1 = createTestBudgetItem();
-        BudgetItem budgetItem2 = createTestBudgetItem();
-        BudgetItem budgetItem3 = createTestBudgetItem();
-        BudgetItem budgetItem4 = createTestBudgetItem();
-
-        budgetItems.add(budgetItem1);
-        budgetItems.add(budgetItem2);
-        budgetItems.add(budgetItem3);
-        budgetItems.add(budgetItem4);
+        List<BudgetItem> budgetItems = Instancio.ofList(BudgetItem.class).size(4).create();
 
         Flux<BudgetItem> budgetItemFlux = Flux.fromIterable(budgetItems);
         String document = "query {" +
@@ -68,15 +56,14 @@ class MainControllerTest {
 
         assertThat(responseItems.size()).isEqualTo(4);
 
-        assertThat(responseItems.get(0)).isEqualTo(budgetItem1);
-        assertThat(responseItems.get(1)).isEqualTo(budgetItem2);
-        assertThat(responseItems.get(2)).isEqualTo(budgetItem3);
-        assertThat(responseItems.get(3)).isEqualTo(budgetItem4);
+        for (int i = 0; i < responseItems.size(); i++) {
+            assertThat(responseItems.get(i)).isEqualTo(budgetItems.get(i));
+        }
     }
 
     @Test
     void createBudgetItem() {
-        BudgetItem budgetItem = createTestBudgetItem();
+        BudgetItem budgetItem = Instancio.create(BudgetItem.class);
         BudgetItem request = new BudgetItem();
         request.setName(budgetItem.getName());
         request.setDayOfMonth(budgetItem.getDayOfMonth());
@@ -136,17 +123,7 @@ class MainControllerTest {
 
     @Test
     void getAllDebt() {
-        List<Debt> debtList = new ArrayList<>(4);
-
-        Debt debt1 = createTestDebt();
-        Debt debt2 = createTestDebt();
-        Debt debt3 = createTestDebt();
-        Debt debt4 = createTestDebt();
-
-        debtList.add(debt1);
-        debtList.add(debt2);
-        debtList.add(debt3);
-        debtList.add(debt4);
+        List<Debt> debtList = Instancio.ofList(Debt.class).size(4).create();
 
         Flux<Debt> debtFlux = Flux.fromIterable(debtList);
         String document = "query {" +
@@ -166,10 +143,8 @@ class MainControllerTest {
                 .get();
         assertThat(responseItems.size()).isEqualTo(4);
 
-        assertThat(responseItems.get(0)).isEqualTo(debt1);
-        assertThat(responseItems.get(1)).isEqualTo(debt2);
-        assertThat(responseItems.get(2)).isEqualTo(debt3);
-        assertThat(responseItems.get(3)).isEqualTo(debt4);
-
+        for(int i = 0; i < responseItems.size(); i++) {
+            assertThat(responseItems.get(i)).isEqualTo(debtList.get(i));
+        }
     }
 }
