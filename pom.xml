@@ -97,7 +97,7 @@
                         <exclude>com/robmcarrier/budgetapp/models/*</exclude>
                     </excludes>
                 </configuration>
-                <version>0.8.8</version>
+                <version>0.8.12</version>
                 <executions>
                     <execution>
                         <goals>
