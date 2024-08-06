@@ -8,9 +8,9 @@ updates:
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
     # Maintain dependencies for npm
   - package-ecosystem: "npm"
     directory: "/react-ts/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
