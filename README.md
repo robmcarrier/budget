@@ -1,2 +1,2 @@
-JAVA: <img src="https://github.com/robmcarrier/budget/blob/main/.github/badges/jacoco.svg" alt="Java code coverage"/>
+[![Java Coverage](https://github.com/robmcarrier/budget/actions/workflows/java-coverage.yml/badge.svg)](https://github.com/robmcarrier/budget/actions/workflows/java-coverage.yml)
 [![React CI](https://github.com/robmcarrier/budget/actions/workflows/react-ci.yml/badge.svg)](https://github.com/robmcarrier/budget/actions/workflows/react-ci.yml)
