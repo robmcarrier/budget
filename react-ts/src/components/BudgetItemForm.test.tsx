@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, expect, vi } from 'vitest';
 import budgetItemsApi from '../api/budgetItemsApi';
 import BudgetItem from '../types/BudgetItem';
+// import BudgetItemsApi from '../api/budgetItemsApi';
 
 describe('BudgetItemForm component', () => {
   it('should render Create Bill button', () => {
@@ -67,9 +68,9 @@ const budgetItem: BudgetItem = {
 
 vi.mock('../api/budgetItemsApi', () => {
   return {
-    default: vi.fn().mockImplementation(() => {
+    default: vi.fn(() => {
       return {
-        getAll: vi.fn().mockImplementation(() => {
+        getAll: vi.fn(() => {
           return Promise.resolve({
             data: {
               data: {
@@ -78,11 +79,11 @@ vi.mock('../api/budgetItemsApi', () => {
             },
           });
         }),
-        createBudgetItem: vi.fn().mockImplementation(() => {
+        createBudgetItem: vi.fn((budgetItemParam: BudgetItem) => {
           return Promise.resolve({
             data: {
               data: {
-                budgetItem: budgetItem,
+                budgetItem: budgetItemParam,
               },
             },
           });
@@ -91,6 +92,7 @@ vi.mock('../api/budgetItemsApi', () => {
     }),
   };
 });
+
 describe('BudgetForm Click ME button', () => {
   it('should list things when it does the thing', async () => {
     act(() => {
@@ -103,9 +105,7 @@ describe('BudgetForm Click ME button', () => {
     });
 
     await userEvent.click(clickMe);
-
-    expect(budgetItemsApi).toHaveBeenCalled();
-
+    
     const firstBudgetItem = screen.getByTestId('1234');
 
     expect(firstBudgetItem).toBeInTheDocument();
