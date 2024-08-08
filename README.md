@@ -1,2 +1,2 @@
 JAVA: <img src="https://github.com/robmcarrier/budget/blob/main/.github/badges/jacoco.svg" alt="Java code coverage"/>
-React: ![Lines](https://img.shields.io/badge/coverage-56.34%25-red.svg?style=flat)
+[![React CI](https://github.com/robmcarrier/budget/actions/workflows/react-ci.yml/badge.svg)](https://github.com/robmcarrier/budget/actions/workflows/react-ci.yml)
