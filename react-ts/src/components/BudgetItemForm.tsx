@@ -8,8 +8,8 @@ import GetBudgetItemsRequest from '../types/GetBudgetItemsRequest';
 const BudgetItemForm = () => {
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([]);
   const [name, setName] = useState('');
-  const [amount, setAmount] = useState<number>();
-  const [dayOfMonth, setDayOfMonth] = useState<number>();
+  const [amount, setAmount] = useState<number>(0);
+  const [dayOfMonth, setDayOfMonth] = useState<number>(0);
   const budgetItemsApi = new BudgetItemsApi();
   const [validated, setValidated] = useState(false);
   const [show, setShow] = useState(false);
@@ -37,8 +37,8 @@ const BudgetItemForm = () => {
     };
     budgetItemsApi.createBudgetItem(budgetItem);
     setName('');
-    setAmount(undefined);
-    setDayOfMonth(undefined);
+    setAmount(0);
+    setDayOfMonth(0);
     doGet();
 
   };
