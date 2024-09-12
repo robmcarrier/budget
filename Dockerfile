@@ -4,8 +4,6 @@ COPY ./src/ /app/src
 COPY ./pom.xml /app/pom.xml
 WORKDIR /app
 
-RUN ls
-
 RUN mvn verify package
 
 COPY /app/target/budget-app-0.0.1-SNAPSHOT.jar app.jar
