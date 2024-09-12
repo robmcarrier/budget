@@ -16,7 +16,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the hello-docker Docker image
-    run: |
-      docker build . --tag ghcr.io/robmcarrier/budget-app:latest
-      docker run ghcr.io/robmcarrier/budget-app:latest
-      docker push ghcr.io/robmcarrier/budget-app:latest
+      run: |
+        docker build . --tag ghcr.io/robmcarrier/budget-app:latest
+        docker run ghcr.io/robmcarrier/budget-app:latest
+        docker push ghcr.io/robmcarrier/budget-app:latest
