@@ -1,14 +1,18 @@
-FROM maven:3.9.9-eclipse-temurin-21-alpine
+#
+# Build stage
+#
+FROM eclipse-temurin:21-alpine AS build
+ENV HOME=/usr/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
+ADD . $HOME
+RUN ./mvnw -f $HOME/pom.xml clean package
 
-COPY ./src/ /app/src
-COPY ./pom.xml /app/pom.xml
-WORKDIR /app
-
-RUN mvn verify package
-
-RUN ls
-
-COPY target/budget-app-0.0.1-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-
+#
+# Package stage
+#
+FROM eclipse-temurin:21-alpine
+ARG JAR_FILE=/usr/app/target/*.jar
+COPY --from=build $JAR_FILE /app/runner.jar
+EXPOSE 8080
+ENTRYPOINT java -jar /app/runner.jar
